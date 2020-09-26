@@ -5,15 +5,16 @@ AppMain.component("app-page", {
   delimiters,
 
   setup() {
-    const notification = inject("notification");
-    return { notification };
+    const { addNotification } = inject("notification");
+
+    return { addNotification };
   },
 
   template:
     /* html */
     `<div>
       <slot
-        :notification="notification"
+        :addNotification="addNotification"
       ></slot>
     </div>`,
 });

@@ -6,9 +6,9 @@
 
 {% block body %}
 <app-page>
-  <template v-slot:default="{ notification }">
-    <button @click="notification.addNotification('example', 'success')">
-      Agregar
+  <template v-slot:default="{ addNotification }">
+    <button @click="addNotification('example', 'success')">
+      add
     </button>
   </template>
 </app-page>

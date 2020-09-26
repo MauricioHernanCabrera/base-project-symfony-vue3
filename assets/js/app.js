@@ -1,5 +1,5 @@
 import "../css/app.css";
-import { createApp, inject } from "vue";
+import { createApp, inject, toRefs } from "vue";
 import delimiters from "./const/delimiters";
 import useStore from "./store";
 
@@ -10,7 +10,10 @@ const AppMain = createApp({
     useStore();
     const notification = inject("notification");
 
-    return { notification };
+    const { removeNotification } = notification;
+    const { notifications } = toRefs(notification.state);
+
+    return { notifications, removeNotification };
   },
 });
 

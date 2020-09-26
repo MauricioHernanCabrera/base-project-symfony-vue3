@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+  <head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+  </head>
+  
+  <body>
+    <div id="app">
+      <div class="notification">
+        <div 
+          v-for="(notificationItem, notificationIndex) in notification.state.notifications"
+          :key="notificationItem.id"
+          class="notification__item"
+        >
+          <span>[[ notificationItem.type ]] - [[ notificationItem.message ]]</span>
+          <span @click="notification.removeNotification(notificationIndex)">x</span>
+        </div>
+      </div>
+
+      {% block body %}
+      {% endblock %}
+    </div>
+
+    {{ encore_entry_script_tags('app') }}
+
+    {% block javascripts %}{% endblock %}
+
+    <script>
+      window.addEventListener('load', function () {
+        AppMain.mount("#app");
+        console.log(document.querySelector('#app'))
+      })
+    </script>
+  </body>
 </html>

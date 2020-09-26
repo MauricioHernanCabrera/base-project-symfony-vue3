@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block javascripts %}
+  {{ encore_entry_script_tags('home_index') }}
+{% endblock javascripts %}
+
+{% block body %}
+<app-page>
+  <template v-slot:default="{ notification }">
+    <button @click="notification.addNotification('example', 'success')">
+      Agregar
+    </button>
+  </template>
+</app-page>
+{% endblock body %}
